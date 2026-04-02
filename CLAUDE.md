@@ -34,5 +34,4 @@ React app built with Vite. No routing, no state management library, no backend.
 
 This is a starter project for a Claude Code course — it was deliberately created with bugs and rough code to be fixed during the course:
 
-- Transaction #4 ("Freelance Work") is incorrectly typed as `"expense"` instead of `"income"`
 - No delete functionality, though `.delete-btn` CSS styles exist in `App.css`
