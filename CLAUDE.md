@@ -16,11 +16,17 @@ There are no tests configured in this project.
 
 ## Architecture
 
-This is a single-component React app built with Vite. All application logic lives in `src/App.jsx` — there is no routing, no state management library, and no backend.
+React app built with Vite. No routing, no state management library, no backend.
 
-**State:** A single `useState` array of transaction objects, each with `{ id, description, amount, type, category }`. Amounts are stored as strings but used numerically in calculations — an intentional bug.
+**Components:**
+- `App.jsx` — root component; owns the `transactions` array state and passes data/callbacks down
+- `Summary.jsx` — receives `transactions`, computes and displays total income, expenses, and balance
+- `TransactionForm.jsx` — owns its own form state; calls `onAdd(transaction)` prop when submitted
+- `TransactionList.jsx` — receives `transactions`, owns filter state (type + category), renders the filtered table
 
-**Data flow:** Filters (type + category) are local state in `App.jsx` that derive a filtered view of the transactions array. The add-transaction form appends to the array via `setTransactions`.
+**State ownership:** `transactions` lives in `App`. Form state lives in `TransactionForm`. Filter state lives in `TransactionList`. Computed values (totals) are derived inside `Summary`.
+
+**Data flow:** `App` → passes `transactions` to `Summary` and `TransactionList`; passes `handleAdd` as `onAdd` to `TransactionForm`, which appends a new transaction to the array.
 
 **Styling:** `App.css` handles all component styles (layout, cards, table, form). `index.css` is a global reset only.
 
@@ -28,6 +34,5 @@ This is a single-component React app built with Vite. All application logic live
 
 This is a starter project for a Claude Code course — it was deliberately created with bugs and rough code to be fixed during the course:
 
-- Transaction amounts are stored as strings, causing implicit coercion in numeric summation
 - Transaction #4 ("Freelance Work") is incorrectly typed as `"expense"` instead of `"income"`
 - No delete functionality, though `.delete-btn` CSS styles exist in `App.css`
