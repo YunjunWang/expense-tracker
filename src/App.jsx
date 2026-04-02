@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import Summary from './Summary'
+import TransactionForm from './TransactionForm'
 import TransactionList from './TransactionList'
 
 function App() {
@@ -15,33 +16,9 @@ function App() {
     { id: 8, description: "Netflix", amount: 15, type: "expense", category: "entertainment", date: "2025-01-10" },
   ]);
 
-  const [description, setDescription] = useState("");
-  const [amount, setAmount] = useState("");
-  const [type, setType] = useState("expense");
-  const [category, setCategory] = useState("food");
-
-  const categories = ["food", "housing", "utilities", "transport", "entertainment", "salary", "other"];
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!description || !amount) return;
-
-    const newTransaction = {
-      id: Date.now(),
-      description,
-      amount,
-      type,
-      category,
-      date: new Date().toISOString().split('T')[0],
-    };
-
-    setTransactions([...transactions, newTransaction]);
-    setDescription("");
-    setAmount("");
-    setType("expense");
-    setCategory("food");
+  const handleAdd = (transaction) => {
+    setTransactions([...transactions, transaction]);
   };
-
 
   return (
     <div className="app">
@@ -49,35 +26,7 @@ function App() {
       <p className="subtitle">Track your income and expenses</p>
 
       <Summary transactions={transactions} />
-
-      <div className="add-transaction">
-        <h2>Add Transaction</h2>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="Description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-          <input
-            type="number"
-            placeholder="Amount"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-          />
-          <select value={type} onChange={(e) => setType(e.target.value)}>
-            <option value="income">Income</option>
-            <option value="expense">Expense</option>
-          </select>
-          <select value={category} onChange={(e) => setCategory(e.target.value)}>
-            {categories.map(cat => (
-              <option key={cat} value={cat}>{cat}</option>
-            ))}
-          </select>
-          <button type="submit">Add</button>
-        </form>
-      </div>
-
+      <TransactionForm onAdd={handleAdd} />
       <TransactionList transactions={transactions} />
     </div>
   );
