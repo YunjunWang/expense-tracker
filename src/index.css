@@ -1,11 +1,38 @@
-* {
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+}
+
+:root {
+  --bg: #080a10;
+  --surface: #0d1018;
+  --card: #111520;
+  --card-hover: #171c2b;
+  --border: rgba(255, 255, 255, 0.07);
+  --border-active: rgba(255, 255, 255, 0.14);
+  --text-primary: #e8ecf8;
+  --text-secondary: #6b7494;
+  --text-muted: #3d4460;
+  --income: #34d399;
+  --income-dim: rgba(52, 211, 153, 0.12);
+  --expense: #fb7185;
+  --expense-dim: rgba(251, 113, 133, 0.12);
+  --accent: #818cf8;
+  --accent-dim: rgba(129, 140, 248, 0.1);
+  --radius: 14px;
+  --radius-sm: 8px;
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background-color: #ffffff;
-  color: #333;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(ellipse 90% 40% at 50% -10%, rgba(129, 140, 248, 0.09), transparent);
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 }
