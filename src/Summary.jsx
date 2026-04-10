@@ -1,3 +1,5 @@
+import { fmt } from './constants'
+
 function Summary({ transactions }) {
   const totalIncome = transactions
     .filter(t => t.type === "income")
@@ -14,12 +16,12 @@ function Summary({ transactions }) {
       <div className="summary-card">
         <div className="card-indicator income-indicator">↑</div>
         <h3>Income</h3>
-        <p className="income-amount">${totalIncome.toLocaleString()}</p>
+        <p className="income-amount">${fmt(totalIncome)}</p>
       </div>
       <div className="summary-card">
         <div className="card-indicator expense-indicator">↓</div>
         <h3>Expenses</h3>
-        <p className="expense-amount">${totalExpenses.toLocaleString()}</p>
+        <p className="expense-amount">${fmt(totalExpenses)}</p>
       </div>
       <div className="summary-card balance-card">
         <div className="card-indicator balance-indicator">◈</div>
@@ -28,7 +30,7 @@ function Summary({ transactions }) {
           className="balance-amount"
           style={{ color: balance >= 0 ? 'var(--income)' : 'var(--expense)' }}
         >
-          {balance >= 0 ? '' : '−'}${Math.abs(balance).toLocaleString()}
+          {balance >= 0 ? '' : '−'}${fmt(Math.abs(balance))}
         </p>
       </div>
     </div>

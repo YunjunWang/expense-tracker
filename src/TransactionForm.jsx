@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { CATEGORIES } from './constants'
 
 function TransactionForm({ onAdd }) {
   const [description, setDescription] = useState("");
@@ -6,22 +7,20 @@ function TransactionForm({ onAdd }) {
   const [type, setType] = useState("expense");
   const [category, setCategory] = useState("food");
 
-  const categories = ["food", "housing", "utilities", "transport", "entertainment", "salary", "other"];
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!description || !amount) return;
+    const parsedAmount = parseFloat(amount);
+    if (!description || !parsedAmount || parsedAmount <= 0) return;
 
-    const newTransaction = {
-      id: Date.now(),
+    onAdd({
+      id: crypto.randomUUID(),
       description,
-      amount,
+      amount: parsedAmount,
       type,
       category,
       date: new Date().toISOString().split('T')[0],
-    };
+    });
 
-    onAdd(newTransaction);
     setDescription("");
     setAmount("");
     setType("expense");
@@ -41,6 +40,8 @@ function TransactionForm({ onAdd }) {
         <input
           type="number"
           placeholder="Amount"
+          min="0.01"
+          step="0.01"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
         />
@@ -49,7 +50,7 @@ function TransactionForm({ onAdd }) {
           <option value="expense">Expense</option>
         </select>
         <select value={category} onChange={(e) => setCategory(e.target.value)}>
-          {categories.map(cat => (
+          {CATEGORIES.map(cat => (
             <option key={cat} value={cat}>{cat}</option>
           ))}
         </select>

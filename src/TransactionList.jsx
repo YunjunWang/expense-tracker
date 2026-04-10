@@ -1,10 +1,9 @@
 import { useState } from 'react'
+import { CATEGORIES, fmt } from './constants'
 
 function TransactionList({ transactions, onDelete }) {
   const [filterType, setFilterType] = useState("all");
   const [filterCategory, setFilterCategory] = useState("all");
-
-  const categories = ["food", "housing", "utilities", "transport", "entertainment", "salary", "other"];
 
   let filteredTransactions = transactions;
   if (filterType !== "all") {
@@ -25,7 +24,7 @@ function TransactionList({ transactions, onDelete }) {
         </select>
         <select value={filterCategory} onChange={(e) => setFilterCategory(e.target.value)}>
           <option value="all">All Categories</option>
-          {categories.map(cat => (
+          {CATEGORIES.map(cat => (
             <option key={cat} value={cat}>{cat}</option>
           ))}
         </select>
@@ -42,22 +41,28 @@ function TransactionList({ transactions, onDelete }) {
           </tr>
         </thead>
         <tbody>
-          {filteredTransactions.map(t => (
-            <tr key={t.id}>
-              <td className="date-cell">{t.date}</td>
-              <td>{t.description}</td>
-              <td><span className={`cat-badge cat-${t.category}`}>{t.category}</span></td>
-              <td className={`amount-cell ${t.type === "income" ? "income-amount" : "expense-amount"}`}>
-                {t.type === "income" ? "+" : "−"}${Number(t.amount).toLocaleString()}
-              </td>
-              <td>
-                <button className="delete-btn" onClick={() => {
-                  if (window.confirm('Delete this transaction?'))
-                    onDelete(t.id);
-                }}>Delete</button>
-              </td>
+          {filteredTransactions.length === 0 ? (
+            <tr>
+              <td colSpan={5} className="empty-state">No transactions match the selected filters.</td>
             </tr>
-          ))}
+          ) : (
+            filteredTransactions.map(t => (
+              <tr key={t.id}>
+                <td className="date-cell">{t.date}</td>
+                <td>{t.description}</td>
+                <td><span className={`cat-badge cat-${t.category}`}>{t.category}</span></td>
+                <td className={`amount-cell ${t.type === "income" ? "income-amount" : "expense-amount"}`}>
+                  {t.type === "income" ? "+" : "−"}${fmt(t.amount)}
+                </td>
+                <td>
+                  <button className="delete-btn" onClick={() => {
+                    if (window.confirm('Delete this transaction?'))
+                      onDelete(t.id);
+                  }}>Delete</button>
+                </td>
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
     </div>

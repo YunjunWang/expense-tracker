@@ -159,15 +159,15 @@
   margin-bottom: 20px;
 }
 
-form {
+.add-transaction form {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1fr auto;
   gap: 10px;
   align-items: end;
 }
 
-form input,
-form select {
+.add-transaction form input,
+.add-transaction form select {
   width: 100%;
   padding: 10px 14px;
   background: var(--surface);
@@ -183,22 +183,22 @@ form select {
   appearance: none;
 }
 
-form input::placeholder {
+.add-transaction form input::placeholder {
   color: var(--text-muted);
 }
 
-form input:focus,
-form select:focus {
+.add-transaction form input:focus,
+.add-transaction form select:focus {
   border-color: var(--accent);
   background: rgba(129, 140, 248, 0.05);
 }
 
-form select option {
+.add-transaction form select option {
   background: #1a1d2e;
   color: var(--text-primary);
 }
 
-form button {
+.add-transaction form button {
   padding: 10px 24px;
   background: var(--accent);
   color: #fff;
@@ -212,8 +212,8 @@ form button {
   transition: opacity 0.18s, transform 0.12s;
 }
 
-form button:hover  { opacity: 0.86; }
-form button:active { transform: scale(0.97); }
+.add-transaction form button:hover  { opacity: 0.86; }
+.add-transaction form button:active { transform: scale(0.97); }
 
 /* ── Transaction List ─────────────────────────── */
 .transactions {
@@ -256,16 +256,16 @@ form button:active { transform: scale(0.97); }
 
 .filters select:focus { border-color: var(--accent); }
 
-table {
+.transactions table {
   width: 100%;
   border-collapse: collapse;
 }
 
-thead tr {
+.transactions thead tr {
   border-bottom: 1px solid var(--border);
 }
 
-th {
+.transactions th {
   padding: 8px 12px;
   text-align: left;
   font-size: 11px;
@@ -275,20 +275,20 @@ th {
   color: var(--text-muted);
 }
 
-td {
+.transactions td {
   padding: 14px 12px;
   font-size: 14px;
   color: var(--text-primary);
   border-bottom: 1px solid var(--border);
 }
 
-tbody tr:last-child td { border-bottom: none; }
+.transactions tbody tr:last-child td { border-bottom: none; }
 
-tbody tr {
+.transactions tbody tr {
   transition: background 0.15s;
 }
 
-tbody tr:hover { background: var(--card-hover); }
+.transactions tbody tr:hover { background: var(--card-hover); }
 
 .date-cell {
   color: var(--text-secondary);
@@ -324,6 +324,13 @@ tbody tr:hover { background: var(--card-hover); }
 .cat-salary        { background: rgba(52, 211, 153, 0.1);  color: #34d399; border-color: rgba(52, 211, 153, 0.2);  }
 .cat-other         { background: rgba(148, 163, 184, 0.1); color: #94a3b8; border-color: rgba(148, 163, 184, 0.2); }
 
+.empty-state {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 32px 12px !important;
+  font-size: 13px;
+}
+
 /* ── Delete button ────────────────────────────── */
 .delete-btn {
   padding: 5px 12px;
@@ -356,15 +363,15 @@ tbody tr:hover { background: var(--card-hover); }
     border-top: 1px solid var(--border);
   }
 
-  form {
+  .add-transaction form {
     grid-template-columns: 1fr 1fr;
   }
 
-  form input[type="text"] {
+  .add-transaction form input[type="text"] {
     grid-column: 1 / -1;
   }
 
-  form button {
+  .add-transaction form button {
     grid-column: 1 / -1;
   }
 
