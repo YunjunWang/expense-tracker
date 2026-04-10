@@ -63,7 +63,7 @@ function SpendingChart({ transactions }) {
             tickLine={false}
           />
           <YAxis
-            tickFormatter={(v) => `$${v}`}
+            tickFormatter={(v) => `$${formatCurrency(v)}`}
             tick={{ fill: CHART_THEME.textSecondary, fontSize: 12, fontFamily: 'Plus Jakarta Sans' }}
             axisLine={false}
             tickLine={false}
