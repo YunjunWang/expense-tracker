@@ -34,6 +34,7 @@ function TransactionForm({ onAdd }) {
         <input
           type="text"
           placeholder="Description"
+          maxLength={100}
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
