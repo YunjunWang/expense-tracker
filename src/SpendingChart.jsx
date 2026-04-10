@@ -1,5 +1,5 @@
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { fmt } from './constants'
+import { formatCurrency } from './constants'
 
 const COLORS = ['#fb7185', '#fbbf24', '#818cf8', '#34d399', '#60a5fa', '#c084fc', '#6ee7b7', '#f472b6'];
 
@@ -27,7 +27,7 @@ const CustomTooltip = ({ active, payload, label }) => {
         color: CHART_THEME.textPrimary,
       }}>
         <p style={{ color: CHART_THEME.textSecondary, marginBottom: 4, textTransform: 'capitalize' }}>{label}</p>
-        <p style={{ fontWeight: 600 }}>${fmt(payload[0].value)}</p>
+        <p style={{ fontWeight: 600 }}>${formatCurrency(payload[0].value)}</p>
       </div>
     );
   }

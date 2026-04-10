@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { CATEGORIES, fmt } from './constants'
+import { CATEGORIES, formatCurrency } from './constants'
 
 function TransactionList({ transactions, onDelete }) {
   const [filterType, setFilterType] = useState("all");
@@ -56,7 +56,7 @@ function TransactionList({ transactions, onDelete }) {
                 <td>{t.description}</td>
                 <td><span className={`cat-badge cat-${t.category}`}>{t.category}</span></td>
                 <td className={`amount-cell ${t.type === "income" ? "income-amount" : "expense-amount"}`}>
-                  {t.type === "income" ? "+" : "−"}${fmt(t.amount)}
+                  {t.type === "income" ? "+" : "−"}${formatCurrency(t.amount)}
                 </td>
                 <td>
                   <button className="delete-btn" onClick={() => handleDeleteClick(t.id)}>Delete</button>
