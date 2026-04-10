@@ -150,6 +150,24 @@
   align-items: end;
 }
 
+.field-wrapper {
+  position: relative;
+}
+
+.field-error {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  font-size: 11px;
+  color: var(--expense);
+  white-space: nowrap;
+}
+
+.add-transaction form input.input-error {
+  border-color: var(--expense);
+  background: var(--expense-dim);
+}
+
 .add-transaction form input,
 .add-transaction form select {
   width: 100%;

@@ -6,12 +6,20 @@ function TransactionForm({ onAdd }) {
   const [amount, setAmount] = useState("");
   const [type, setType] = useState("expense");
   const [category, setCategory] = useState("food");
+  const [descriptionError, setDescriptionError] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const parsedAmount = parseFloat(amount);
-    if (!description || !parsedAmount || parsedAmount <= 0) return;
 
+    if (!description.trim()) {
+      setDescriptionError("Description is required.");
+      return;
+    }
+
+    if (!parsedAmount || parsedAmount <= 0) return;
+
+    setDescriptionError("");
     onAdd({
       id: crypto.randomUUID(),
       description,
@@ -31,13 +39,20 @@ function TransactionForm({ onAdd }) {
     <div className="add-transaction">
       <p className="section-title">Add Transaction</p>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Description"
-          maxLength={100}
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
+        <div className="field-wrapper">
+          <input
+            type="text"
+            placeholder="Description"
+            maxLength={100}
+            value={description}
+            className={descriptionError ? "input-error" : ""}
+            onChange={(e) => {
+              setDescription(e.target.value);
+              if (descriptionError) setDescriptionError("");
+            }}
+          />
+          {descriptionError && <p className="field-error">{descriptionError}</p>}
+        </div>
         <input
           type="number"
           placeholder="Amount"
