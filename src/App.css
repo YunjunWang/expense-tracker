@@ -131,14 +131,6 @@
   animation: fadeUp 0.5s ease 0.12s both;
 }
 
-.spending-chart h2 {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 20px;
-}
 
 /* ── Form ──────────────────────────────────────── */
 .add-transaction {
@@ -150,14 +142,6 @@
   animation: fadeUp 0.5s ease 0.18s both;
 }
 
-.add-transaction h2 {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 20px;
-}
 
 .add-transaction form {
   display: grid;
@@ -224,14 +208,6 @@
   animation: fadeUp 0.5s ease 0.24s both;
 }
 
-.transactions h2 {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 18px;
-}
 
 .filters {
   display: flex;

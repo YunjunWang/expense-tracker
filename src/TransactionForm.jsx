@@ -29,7 +29,7 @@ function TransactionForm({ onAdd }) {
 
   return (
     <div className="add-transaction">
-      <h2>Add Transaction</h2>
+      <p className="section-title">Add Transaction</p>
       <form onSubmit={handleSubmit}>
         <input
           type="text"

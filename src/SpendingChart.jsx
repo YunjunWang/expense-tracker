@@ -48,7 +48,7 @@ function SpendingChart({ transactions }) {
 
   return (
     <div className="spending-chart">
-      <h2>Spending by Category</h2>
+      <p className="section-title">Spending by Category</p>
       <ResponsiveContainer width="100%" height={260}>
         <BarChart data={data} barSize={32}>
           <CartesianGrid
