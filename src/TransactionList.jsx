@@ -5,6 +5,10 @@ function TransactionList({ transactions, onDelete }) {
   const [filterType, setFilterType] = useState("all");
   const [filterCategory, setFilterCategory] = useState("all");
 
+  const handleDeleteClick = (id) => {
+    if (window.confirm('Delete this transaction?')) onDelete(id);
+  };
+
   let filteredTransactions = transactions;
   if (filterType !== "all") {
     filteredTransactions = filteredTransactions.filter(t => t.type === filterType);
@@ -55,10 +59,7 @@ function TransactionList({ transactions, onDelete }) {
                   {t.type === "income" ? "+" : "−"}${fmt(t.amount)}
                 </td>
                 <td>
-                  <button className="delete-btn" onClick={() => {
-                    if (window.confirm('Delete this transaction?'))
-                      onDelete(t.id);
-                  }}>Delete</button>
+                  <button className="delete-btn" onClick={() => handleDeleteClick(t.id)}>Delete</button>
                 </td>
               </tr>
             ))
