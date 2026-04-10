@@ -3,13 +3,16 @@ import { fmt } from './constants'
 
 const COLORS = ['#fb7185', '#fbbf24', '#818cf8', '#34d399', '#60a5fa', '#c084fc', '#6ee7b7', '#f472b6'];
 
+const cssVar = (name) =>
+  getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+
 const CHART_THEME = {
-  tooltipBg: '#1a1d2e',
-  tooltipBorder: 'rgba(255,255,255,0.1)',
-  textPrimary: '#e8ecf8',
-  textSecondary: '#6b7494',
-  gridStroke: 'rgba(255,255,255,0.05)',
-  axisLine: 'rgba(255,255,255,0.07)',
+  tooltipBg:     cssVar('--card'),
+  tooltipBorder: cssVar('--border'),
+  textPrimary:   cssVar('--text-primary'),
+  textSecondary: cssVar('--text-secondary'),
+  gridStroke:    'rgba(255,255,255,0.05)',
+  axisLine:      cssVar('--border'),
 };
 
 const CustomTooltip = ({ active, payload, label }) => {
